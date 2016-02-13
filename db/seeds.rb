@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Mcquestion.create([
+  { stem: 'Ben Franklin Labs' },
+  { stem: 'Snip Salon Software' },
+  { stem: 'GloboChem' },
+  { stem: 'TechCorp' },
+])

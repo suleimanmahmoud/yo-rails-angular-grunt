@@ -1,0 +1,1 @@
+# yo-rails-angular-grunt

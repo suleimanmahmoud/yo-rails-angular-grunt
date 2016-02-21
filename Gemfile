@@ -25,6 +25,9 @@ end
 # Utilize mandrill as mailing service
 gem 'mandrill-api'
 
+# Utilize active model serializer
+gem 'active_model_serializers'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

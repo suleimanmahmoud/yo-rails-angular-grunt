@@ -1,0 +1,60 @@
+<!-- app/views/contact.html -->
+
+<h1>Contact</h1>
+
+<ul ng-repeat="contact in contacts">
+  <ul>
+    <li> <strong>{{contact.name}} </strong></li>
+    <li>{{contact.email}}</li>
+    <li>{{contact.message}}</li>
+  </ul>
+</ul>
+
+
+<form role="form" name="contactForm" ng-submit="submitForm(contactForm.$valid)" ng-if="!loading" novalidate>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group" ng-class="{ 'has-warning' : contactForm.name.$invalid && !contactForm.name.$pristine }">
+        <label>Name:</label>
+        <input class="form-control" type="text" name="name" ng-model="form.name" required>
+        <p ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" class="help-block">Name is required.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group" ng-class="{ 'has-warning' : contactForm.email.$invalid && !contactForm.email.$pristine }">
+        <label>Email:</label>
+        <input class="form-control" type="email" name="email" ng-model="form.email" required>
+        <p ng-show="contactForm.email.$error.required && !contactForm.email.$pristine" class="help-block">Email is required.</p>
+        <p ng-show="contactForm.email.$error.email && !contactForm.email.$pristine" class="help-block">Email is invalid.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group" ng-class="{ 'has-warning' : contactForm.message.$invalid && !contactForm.message.$pristine }">
+        <label>Message:</label>
+        <!--<textarea class="form-control" name="message" ng-model="form.message" required></textarea>-->
+        <summernote class="form-control" name="message" ng-model="message" required></summernote>
+        <p ng-show="contactForm.message.$invalid && !contactForm.message.$pristine" class="help-block">Message is required.</p>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <hr>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="text-center">
+        <button class="btn btn-primary" type="submit" ng-disabled="contactForm.$invalid || contactForm.$pristine"><strong> Send</strong></button>
+      </div>
+    </div>
+  </div>
+
+</form>

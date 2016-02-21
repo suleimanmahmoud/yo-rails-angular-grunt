@@ -5,10 +5,12 @@ class AdminMailer < ApplicationMailer
     message = {to:[email: "contact@suleimanaugusto.me", type: "to"],
                merge: true,
                async: true,
+               from_name: contact.name,
+               from_email: contact.email,
+               reply_to: contact.email,
                global_merge_vars: [
                    {name: "CONTACT_NAME", content: contact.name},
                    {name: "CONTACT_EMAIL", content: contact.email},
-                   {name: "CONTACT_SUBJECT", content: contact.subject},
                    {name: "CONTACT_MESSAGE", content: contact.message}
                ]
     }

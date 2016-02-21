@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap',
+    'summernote'
   ])
 .config(function ($routeProvider) {
   $routeProvider
@@ -27,17 +29,17 @@ angular
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl'
     })
-    .when('/mcquestions', {
-      templateUrl: 'views/mcquestions.html',
-      controller: 'McquestionsCtrl',
-      controllerAs: 'mcquestions'
+    .when('/contact', {
+      templateUrl: 'views/contact.html',
+      controller: 'ContactsCtrl',
+      controllerAs: 'contact'
     })
     .otherwise({
       redirectTo: '/'
     });
 })
-.factory('MCQuestion', ['$resource', function($resource) {
-  return $resource('/api/mcquestions/:id.json', null, {
+.factory('Contact', ['$resource', function($resource) {
+  return $resource('/api/contacts/:id.json', null, {
     'update': { method:'PUT' }
   });
 }]);

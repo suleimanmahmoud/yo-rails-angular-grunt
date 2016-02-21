@@ -11,7 +11,7 @@
 </ul>
 
 
-<form role="form" name="contactForm" ng-submit="submitForm(contactForm.$valid)" ng-if="!loading" novalidate>
+<form accessible-form role="form" name="contactForm" ng-submit="submitForm(contactForm.$valid)" ng-if="!loading" novalidate>
   <div class="row">
     <div class="col-md-6">
       <div class="form-group" ng-class="{ 'has-warning' : contactForm.name.$invalid && !contactForm.name.$pristine }">
@@ -37,8 +37,8 @@
     <div class="col-md-12">
       <div class="form-group" ng-class="{ 'has-warning' : contactForm.message.$invalid && !contactForm.message.$pristine }">
         <label>Message:</label>
-        <!--<textarea class="form-control" name="message" ng-model="form.message" required></textarea>-->
-        <summernote class="form-control" name="message" ng-model="message" required></summernote>
+        <textarea class="form-control" name="message" ng-model="form.message" style="display:none;" required></textarea>
+        <summernote config="options" ng-model="form.message"></summernote>
         <p ng-show="contactForm.message.$invalid && !contactForm.message.$pristine" class="help-block">Message is required.</p>
       </div>
     </div>

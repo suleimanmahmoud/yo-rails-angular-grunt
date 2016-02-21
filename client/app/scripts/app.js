@@ -38,9 +38,5 @@ angular
       redirectTo: '/'
     });
 })
-.factory('Contact', ['$resource', function($resource) {
-  return $resource('/api/contacts/:id.json', null, {
-    'update': { method:'PUT' }
-  });
-}]);
+;
 

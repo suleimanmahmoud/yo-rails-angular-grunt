@@ -6,7 +6,6 @@ class AdminMailer < ApplicationMailer
                merge: true,
                async: true,
                from_name: contact.name,
-               from_email: contact.email,
                reply_to: contact.email,
                global_merge_vars: [
                    {name: "CONTACT_NAME", content: contact.name},

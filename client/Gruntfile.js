@@ -28,12 +28,12 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
     shell: {
-        startRailsServer: {
-            command: 'rails s',
-            options: {
-                async: true
-            }       
+      startRailsServer: {
+        command: 'rails s',
+        options: {
+          async: true
         }
+      }
     },
 
     // Project settings
@@ -93,33 +93,33 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-            middleware: function (connect, options) {
-              if (!Array.isArray(options.base)) {
-                  options.base = [options.base];
-              }
-
-              // Setup the proxy
-              var middlewares = [
-                  require('grunt-connect-proxy/lib/utils').proxyRequest,
-                  connect.static('.tmp'),
-                  connect().use(
-                      '/bower_components',
-                      connect.static('./bower_components')
-                  // ),
-                  // connect().use(
-                  //     '/app/styles',
-                  //     connect.static('./app/styles')
-                  ),
-                  connect.static(appConfig.app)
-              ];
-
-              // Make directory browse-able.
-              var directory = options.directory || options.base[options.base.length - 1];
-              middlewares.push(connect.directory(directory));
-
-              return middlewares;
+          middleware: function (connect, options) {
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
             }
+
+            // Setup the proxy
+            var middlewares = [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
+              connect.static('.tmp'),
+              connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+                // ),
+                // connect().use(
+                //     '/app/styles',
+                //     connect.static('./app/styles')
+              ),
+              connect.static(appConfig.app)
+            ];
+
+            // Make directory browse-able.
+            var directory = options.directory || options.base[options.base.length - 1];
+            middlewares.push(connect.directory(directory));
+
+            return middlewares;
           }
+        }
       },
       test: {
         options: {
@@ -238,20 +238,20 @@ module.exports = function (grunt) {
         fileTypes:{
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
+            detect: {
+              js: /'(.*\.js)'/gi
+            },
+            replace: {
+              js: '\'{{filePath}}\','
             }
           }
+        }
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
-    }, 
+    },
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
@@ -451,8 +451,14 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-          dest: '<%= yeoman.dist %>'
-        }]
+          dest: '<%= yeoman.dist %>',
+        },
+          {
+            expand: true,
+            src: 'bower_components/font-awesome/fonts/*',
+            dest: '<%= yeoman.dist %>'
+          }
+        ]
       },
       styles: {
         expand: true,

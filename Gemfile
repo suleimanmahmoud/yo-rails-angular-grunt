@@ -17,8 +17,13 @@ group :development do
   gem 'byebug'
   # Test gem
   gem 'rspec-rails'
+  # Better debuggingi
+  gem 'better_errors'
+  gem 'quiet_assets'
 end
 
+# Utilize mandrill as mailing service
+gem 'mandrill-api'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

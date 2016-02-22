@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: McquestionsCtrl', function () {
+describe('Controller: ContactsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoRailsAngularGruntApp'));
 
-  var McquestionsCtrl,
+  var ContactsCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    McquestionsCtrl = $controller('McquestionsCtrl', {
+    ContactsCtrl = $controller('ContactsCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of mcquestions to the scope', function () {
-    expect(McquestionsCtrl.questions.length).toBe(8);
+    expect(ContactsCtrl.contacts.length).toBe(1);
   });
 });

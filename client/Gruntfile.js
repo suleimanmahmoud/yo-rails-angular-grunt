@@ -22,14 +22,15 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    public: '../public'
   };
 
   // Define the configuration for all the tasks
   grunt.initConfig({
     shell: {
       startRailsServer: {
-        command: 'rails s',
+        command: 'bundle exec passenger start ../',
         options: {
           async: true
         }
@@ -191,6 +192,19 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
             '!<%= yeoman.dist %>/.git{,*/}*'
+          ]
+        }]
+      },
+      public: {
+        options: {
+          force: true
+        },
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%= yeoman.public %>/{,*/}*',
+            '!<%= yeoman.public %>/.git*'
           ]
         }]
       },
@@ -465,6 +479,17 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      public: {
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%= yeoman.dist %>',
+            src: '**/*',
+            dest: '<%= yeoman.public %>'
+          }
+        ]
       }
     },
 
@@ -526,6 +551,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'clean:public',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -539,7 +565,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'copy:public'
   ]);
 
   grunt.registerTask('default', [
@@ -548,6 +575,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.registerTask('heroku:production', 'build');
 
   grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-connect-proxy');
